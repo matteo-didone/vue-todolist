@@ -68,7 +68,7 @@
     
             <div class="action-bar">
                 <input type="text" v-model="newToDoElement" placeholder="Add item to the To Do List">
-                <button class="todo-adder" @click="addToDo()">Add Item</button>
+                <button class="todo-adder" @click="addToDo()" @keydown.enter="addToDo()">Add Item</button>
             </div>
 
         </div>
