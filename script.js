@@ -1,6 +1,5 @@
 // Bonus:
-// 1- In addition to clicking the button, also intercept the ENTER key to add the todo to the list.
-// 2- By clicking on the text of the item, reverse the value of the done property of the corresponding todo (if done was false, set it to true, and vice versa).
+// By clicking on the text of the item, reverse the value of the done property of the corresponding todo (if done was false, set it to true, and vice versa).
 
 const { createApp } = Vue;
 
@@ -90,7 +89,10 @@ createApp({
             // Variable to store the text of the new to do item
             newToDoElement: '',
             // Variable to store the status of the new item
-            done: false
+            done: false,
+
+            // Variable to store the index of the selected todo item
+            selectedToDoIndex: null,
 
         }
     },
@@ -116,10 +118,17 @@ createApp({
                 // Add the new to do item to the list of to do items
                 this.toDoList.push({
                     text: this.newToDoElement,
-                    done: false
+                    done: false, 
                 });
                 // Reset the new to do item variable
                 this.newToDoElement = '';
+            }
+        },
+
+        // Method to add item to the list on Enter key press
+        handleEnterKey(event) {
+            if (event.key === 'Enter') {
+                this.addToDo();
             }
         },
 
@@ -141,15 +150,46 @@ createApp({
         },
 
         // Method to restore a to do item from the done list 
-        restoreToDo(toDoElementIndex) {
-            // Check the done list, to make sure it is not empty 
-            if (this.doneList.length > 0) {
-                // Pop the last item from the done list and save it in a variable
-                const restoredElement = this.doneList.pop();
-                // Store the restored element in the todo list 
-                this.toDoList.push(restoredElement);
+        restoreToDo(doneElementIndex) {
+            // Check if the done list index is valid
+            if (doneElementIndex >= this.doneList.length || doneElementIndex < 0) {
+                console.warn('Invalid index');
+                return;
             }
-        }, 
+        
+            // Remove the item from the done list using splice
+            const restoredElement = this.doneList.splice(doneElementIndex, 1)[0];
+            // Set the done property to false for the restored item
+            restoredElement.done = false;
+            // Add the restored item back to the to-do list
+            this.toDoList.push(restoredElement);
+        },                
+
+        toggleDoneStatus(toDoElement) {
+            toDoElement.done = !toDoElement.done;
+
+            if (toDoElement.done) {
+                const doneIndex = this.doneList.findIndex(item => item.text === toDoElement.text);
+                if (doneIndex === -1) {
+                    this.doneList.push(toDoElement);
+                }
+
+                const index = this.toDoList.findIndex(item => item.text === toDoElement.text);
+                if (index !== -1) {
+                    this.toDoList.splice(index, 1);
+                }
+            } else {
+                const index = this.doneList.findIndex(item => item.text === toDoElement.text);
+                if (index !== -1) {
+                    this.doneList.splice(index, 1);
+                }
+
+                const todoIndex = this.toDoList.findIndex(item => item.text === toDoElement.text);
+                if (todoIndex === -1) {
+                    this.toDoList.push(toDoElement);
+                }
+            }
+        },
 
         // Method to check the status of a to do item in the list
         isDone(toDoElement) {
