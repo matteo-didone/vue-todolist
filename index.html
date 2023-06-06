@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="it">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- VUE -->
+        <script src="https://unpkg.com/vue@3.2.30"></script>
+        <title>Vue Carousel</title>
+        <!-- Font Awesome 6.4.0 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css" integrity="sha512-h3sKk/x6ipBRuYXJ8V7Ku6S4T6T+fxHcIC8WSPcJvPzLPTyuFy/aXf8dn1xilJv2I2QnZGTLue5f0ZR5UE5i5Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <!-- App Container -->
+        <div id="app">
+            <header>
+                <h1>Vue Carousel</h1>
+            </header>
+
+            <div class="wrapper">
+
+                <div class="carousel-controls">
+
+                    <div class="carousel-control-btn-container">
+                        <button class="carousel-controls-btn" @click="getPrevious">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                    </div>
+
+                    <div class="carousel-control-btn-container">
+                        <button class="carousel-controls-btn" @click="getNext">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                </div>
+
+                <div class="carousel-controls-play-reverse">
+                    <div class="carousel-controls">
+                        <button class="carousel-controls-btn" @click="toggleAutoPlay">
+                            <i :class="isAutoplayActive ? 'fas fa-pause' : 'fas fa-play'"></i>
+                        </button>
+                    
+                        <button class="carousel-controls-btn" @click="reverseAutoplay">
+                            <i class="fas fa-undo"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="carousel">
+                    <div class="carousel-slide">
+                        <img :src="carousel[activeIndex].image" :alt="carousel[activeIndex].title">
+                    </div>
+
+                    <div class="carousel-description">
+                        <h2>{{ carousel[activeIndex].title }}</h2>
+                        <p>{{ carousel[activeIndex].description }}</p>
+                    </div>
+
+                </div>
+
+                <div class="thumbnail-carousel">
+                    <div class="thumbnail-carousel-slide" v-for="(item, index) in carousel" :key="index" @click="goToThumbnailSlide(index)">
+                        <img :src="item.image" :alt="item.title">
+                    </div>
+                </div>
+
+            </div>
+        </div>  
+
+        
+        <script src="script.js"></script>
+    </body>
+
+</html>
