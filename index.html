@@ -19,26 +19,26 @@
 
         <!-- App Container -->
         <div id="app">
+            
             <header>
                 <h1>Vue To Do List</h1>
             </header>
 
             <div class="to-do-list">
                 <ul>
-                    <li v-for="todoItem in toDoList">
-                        {{ todoItem }}
+                    <li v-for="toDoElement in toDoList">
+                        {{ toDoElement.text }}
                     </li>
                 </ul>
             </div>
 
             <div class="action-bar">
-                <input type="text" v-model="newElement" placeholder="Add item to the To Do List">
+                <input type="text" v-model="newToDoElement" placeholder="Add item to the To Do List">
                 <button class="todo-adder" @click="addToDo(toDoElement)">Add Item</button>
             </div>
 
-        </div>  
+        </div>
 
-        
         <script src="script.js"></script>
     </body>
 

@@ -12,8 +12,6 @@
 // 1- In addition to clicking the button, also intercept the ENTER key to add the todo to the list.
 // 2- By clicking on the text of the item, reverse the value of the done property of the corresponding todo (if done was false, set it to true, and vice versa).
 
-
-(() => {
 const { createApp } = Vue;
 
 createApp({
@@ -120,20 +118,20 @@ createApp({
     // Methods of the app
     methods: {
 
-        // Method to add a new to do item to the list
-        addToDo(toDoElement) {
-            // Check if the new to do item is not empty
-            if (this.newToDoElement !== '') 
-            {
-                // Add the new to do item to the list of to do items
-                this.toDoList.push({
-                    text: this.newToDoElement,
-                    done: false
-                });
-                // Reset the new to do item variable
-                this.newToDoElement = '';
-            }
-        },
+            // Method to add a new to do item to the list
+            addToDo(toDoElement) {
+                // Check if the new to do item is not empty
+                if (this.newToDoElement !== '') 
+                {
+                    // Add the new to do item to the list of to do items
+                    this.toDoList.push({
+                        text: this.newToDoElement,
+                        done: false
+                    });
+                    // Reset the new to do item variable
+                    this.newToDoElement = '';
+                }
+            },
 
         // Method to remove a to do item from the list
         removeToDo(toDoElementIndex) {
@@ -178,6 +176,4 @@ createApp({
         }
     }
 
-}).mount('#app')
-
-})();
+}).mount('#app');
