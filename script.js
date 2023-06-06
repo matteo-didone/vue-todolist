@@ -122,25 +122,32 @@ createApp({
 
         // Method to add a new to do item to the list
         addToDo(toDoElement) {
+            // Check if the new to do item is not empty
             if (this.newToDoElement !== '') 
             {
+                // Add the new to do item to the list of to do items
                 this.toDoList.push({
                     text: this.newToDoElement,
                     done: false
                 });
+                // Reset the new to do item variable
                 this.newToDoElement = '';
             }
         },
 
         // Method to remove a to do item from the list
         removeToDo(toDoElementIndex) {
+            // Check if the index is valid 
             if( toDoElementIndex >= this.toDoList.length || toDoElementIndex < 0) 
             {
+                // Print an error message to the console if the index is not valid
                 console.log('Invalid index');
             }
-            else 
+            else // If the index is valid
             {
+                // We store the removed element into a variable
                 const removedElement = this.toDoList.splice(toDoElementIndex, 1);
+                // We add such variable to the list of the done items
                 this.doneList.push(removedElement[0]);
             }
         },
@@ -160,11 +167,13 @@ createApp({
 
         // Method to check the status of a to do item in the list
         isDone(toDoElement) {
+            // Check if the to do item is done or not, and return the value
             return this.toDoElement.done;
         },
 
         // Method to update the status of a to do item in the list
         updateStatus(toDoElement) {
+            // Update the status of the to do item
             this.done = !this.done;
         }
     }
