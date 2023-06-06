@@ -74,32 +74,62 @@
                 </ul>
             </div>
 
+            <!-- Container for second list: Done List -->
             <div class="done-list">
                 <h2>Done List</h2>
+
                 <ul>
+                    <!-- We start a loop that iterates through the whole doneList array using v-for  -->
+                    <!-- Current element: variable doneElement -->
+                    <!-- Element Index: doneElementIndex -->
+                    <!-- :key provides a unique identifier for each element in the loop -->
+                    <!-- When the <li> element is clicked, it triggers the @click event handler, that calls the method restoreToDo() and passes as a paramter to the method doneElementIndex -->
                     <li v-for="(doneElement, doneElementIndex) in doneList" :key="doneElementIndex"
                         @click="restoreToDo(doneElementIndex)">
-                        <span class="done">{{ doneElement.text }}</span>
+
+                        <span class="done">
+                            <!-- This takes the text of the doneElement, and inserts it inside of the span -->
+                            {{ doneElement.text }}
+                        </span>
 
                         <div class="button-container">
+                            <!-- 
+                                When the button is clicked, the restoreToDo method is triggered, and it passes as arguments:
+                                    -Element Index: doneElementIndex
+                            -->
                             <button class="todo-undo" @click="restoreToDo(doneElementIndex)">
                                 Undo
                                 <i class="fa-solid fa-undo"></i>
                             </button>
+
+                            <!-- 
+                                When the button is clicked, the removeFromDoneListEntirely method is triggered, and it passes as arguments:
+                                    -Element Index: doneElementIndex
+                            -->
                             <button class="todo-delete" @click="removeFromDoneListEntirely(doneElementIndex)">
                                 <i class="fa-solid fa-x"></i>
                             </button>
 
                         </div>
                     </li>
+
                 </ul>
+
             </div>
         </div>
 
+        <!-- Action Bar Div -->
         <div class="action-bar">
+            <!-- 
+                v-model directive binds the input value to the newToDoElement property in the Vue instance, allowing two-way data binding. 
+
+                @keydown event listener triggers the handleEnterKey method when a key is pressed while the input is focused: this allows me to simply press "Enter", and it allows me to provide as input a new task
+            -->
             <input type="text" v-model="newToDoElement" placeholder="Add item to the To Do List"
                 @keydown="handleEnterKey">
+            <!-- @click is an event listener that triggers the addToDo method when the button is clicked. -->
             <button class="todo-adder" @click="addToDo()">Add Item</button>
+
         </div>
 
     </div>
