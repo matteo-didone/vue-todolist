@@ -36,7 +36,7 @@
                                     Done
                                     <i class="fa-solid fa-check"></i>
                                 </button>
-                                <button class="todo-delete" @click="removeTask(toDoElementIndex)">
+                                <button class="todo-delete" @click="removeFromToDoList(toDoElementIndex)">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </div>
@@ -52,13 +52,14 @@
                             <span class="done">{{ doneElement.text }}</span>
 
                             <div class="button-container">
-                                <button class="todo-undo" @click="restoreToDo(index)">
+                                <button class="todo-undo" @click="restoreToDo(toDoElementIndex)">
                                     Undo
                                     <i class="fa-solid fa-undo"></i>
                                 </button>
-                                <button class="todo-delete" @click="removeTask(toDoElementIndex)">
+                                <button class="todo-delete" @click="removeFromDoneList(index)">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
+                                
                             </div>
                         </li>
                     </ul>

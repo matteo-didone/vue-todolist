@@ -16,86 +16,86 @@ createApp({
             // Start creating an array of literal objects
             // Each object will have text and done properties
             toDoList:
-            [
-                {
-                    text: 'Go for a morning jog',
-                    done: false
-                },
-                {
-                    text: 'Prepare breakfast',
-                    done: false
-                },
-                {
-                    text: 'Read a chapter from a book',
-                    done: false
-                },
-                {
-                    text: 'Complete the coding project milestone',
-                    done: false
-                },
-                {
-                    text: 'Have a healthy lunch',
-                    done: false
-                },
-                {
-                    text: 'Attend a team meeting',
-                    done: false
-                },
-                {
-                    text: 'Reply to important emails',
-                    done: false
-                },
-                {
-                    text: 'Take a short break and stretch',
-                    done: false
-                },
-                {
-                    text: 'Research new coding techniques',
-                    done: false
-                },
-                {
-                    text: 'Write a blog post about your project',
-                    done: false
-                },
-                {
-                    text: 'Review and debug code',
-                    done: false
-                },
-                {
-                    text: 'Plan tasks for tomorrow',
-                    done: false
-                },
-                {
-                    text: 'Cook dinner',
-                    done: false
-                },
-                {
-                    text: 'Watch a tutorial on a new programming language',
-                    done: false
-                },
-                {
-                    text: 'Relax and unwind with a favorite hobby',
-                    done: false
-                },
-                {
-                    text: 'Don\'t forget to brush your teeth before bed',
-                    done: false
-                },
-                {
-                    text: 'Start a new life in Argentina',
-                    done: false
-                }
-            ], 
+                [
+                    {
+                        text: 'Go for a morning jog',
+                        done: false
+                    },
+                    {
+                        text: 'Prepare breakfast',
+                        done: false
+                    },
+                    {
+                        text: 'Read a chapter from a book',
+                        done: false
+                    },
+                    {
+                        text: 'Complete the coding project milestone',
+                        done: false
+                    },
+                    {
+                        text: 'Have a healthy lunch',
+                        done: false
+                    },
+                    {
+                        text: 'Attend a team meeting',
+                        done: false
+                    },
+                    {
+                        text: 'Reply to important emails',
+                        done: false
+                    },
+                    {
+                        text: 'Take a short break and stretch',
+                        done: false
+                    },
+                    {
+                        text: 'Research new coding techniques',
+                        done: false
+                    },
+                    {
+                        text: 'Write a blog post about your project',
+                        done: false
+                    },
+                    {
+                        text: 'Review and debug code',
+                        done: false
+                    },
+                    {
+                        text: 'Plan tasks for tomorrow',
+                        done: false
+                    },
+                    {
+                        text: 'Cook dinner',
+                        done: false
+                    },
+                    {
+                        text: 'Watch a tutorial on a new programming language',
+                        done: false
+                    },
+                    {
+                        text: 'Relax and unwind with a favorite hobby',
+                        done: false
+                    },
+                    {
+                        text: 'Don\'t forget to brush your teeth before bed',
+                        done: false
+                    },
+                    {
+                        text: 'Start a new life in Argentina',
+                        done: false
+                    }
+                ],
 
             // Prepare an array that's going to store the to do items that will be done: true
-            doneList : [],
+            doneList: [],
 
             // Variable to store the text of the new to do item
-            newToDoElement: '', 
+            newToDoElement: '',
             // Variable to store the status of the new item
-            done: false 
+            done: false
 
-        }  
+        }
     },
 
     // Method called when the component is mounted
@@ -111,29 +111,27 @@ createApp({
     // Methods of the app
     methods: {
 
-            // Method to add a new to do item to the list
-            addToDo(toDoElement) {
-                // Check if the new to do item is not empty
-                if (this.newToDoElement !== '') 
-                {
-                    // Add the new to do item to the list of to do items
-                    this.toDoList.push({
-                        text: this.newToDoElement,
-                        done: false
-                    });
-                    // Reset the new to do item variable
-                    this.newToDoElement = '';
-                }
-            },
+        // Method to add a new to do item to the list
+        addToDo(toDoElement) {
+            // Check if the new to do item is not empty
+            if (this.newToDoElement !== '') {
+                // Add the new to do item to the list of to do items
+                this.toDoList.push({
+                    text: this.newToDoElement,
+                    done: false
+                });
+                // Reset the new to do item variable
+                this.newToDoElement = '';
+            }
+        },
 
         // Method to remove a to do item from the list
         removeToDo(toDoElement, toDoElementIndex) {
             // Check if the index is valid
-            if (toDoElementIndex >= this.toDoList.length || toDoElementIndex < 0) 
-            {
+            if (toDoElementIndex >= this.toDoList.length || toDoElementIndex < 0) {
                 // If the index is invalid, warn
                 console.warn('Invalid index');
-            } 
+            }
             else // If the index is valid
             {
                 // It uses the splice method, which modifies the array by removing or replacing elements
@@ -147,8 +145,7 @@ createApp({
         // Method to restore a to do item from the done list 
         restoreToDo(toDoElementIndex) {
             // Check the done list, to make sure it is not empty 
-            if (this.doneList.length > 0) 
-            {
+            if (this.doneList.length > 0) {
                 // Pop the last item from the done list and save it in a variable
                 const restoredElement = this.doneList.pop();
                 // Store the restored element in the todo list 
@@ -168,26 +165,31 @@ createApp({
             this.done = !this.done;
         },
 
-        // Method to completely remove from either list the task 
-        removeTask(toDoElementIndex) {
-
-            // Check if the index is valid just like we did before with the removeToDo method
+        removeFromToDoList(toDoElementIndex) {
             if (toDoElementIndex >= this.toDoList.length || toDoElementIndex < 0) {
                 console.warn('Invalid index');
+                return;
             }
-        
-            // Remove the todo item from the appropriate list by checking if it is in the to do list or not
-            if (this.toDoList.includes(this.toDoList[toDoElementIndex])) 
-            {
-                // Remove from the todo list
-                this.toDoList.splice(toDoElementIndex, 1);
-            } 
-            else if (this.doneList.includes(this.doneList[toDoElementIndex])) 
-            {
-                // Remove from the done list
-                this.doneList.splice(toDoElementIndex, 1);
+
+            const removedElement = this.toDoList.splice(toDoElementIndex, 1)[0];
+
+            if (removedElement.done) {
+                const doneElementIndex = this.doneList.findIndex(element => element.text === removedElement.text);
+                if (doneElementIndex >= 0) {
+                    this.doneList.splice(doneElementIndex, 1);
+                }
             }
+        },
+
+        removeFromDoneList(doneElementIndex) {
+            if (doneElementIndex >= this.doneList.length || doneElementIndex < 0) {
+                console.warn('Invalid index');
+                return;
+            }
+
+            this.doneList.splice(doneElementIndex, 1);
         }
+
     }
 
 }).mount('#app');
