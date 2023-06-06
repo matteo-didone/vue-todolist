@@ -100,7 +100,7 @@ createApp({
             doneList : [],
 
             // Variable to store the text of the new to do item
-            newToDoText: '', 
+            newToDoElement: '', 
             // Variable to store the status of the new item
             done: false 
 
@@ -121,10 +121,52 @@ createApp({
     methods: {
 
         // Method to add a new to do item to the list
+        addToDo(toDoElement) {
+            if (this.newToDoElement !== '') 
+            {
+                this.toDoList.push({
+                    text: this.newToDoElement,
+                    done: false
+                });
+                this.newToDoElement = '';
+            }
+        },
 
         // Method to remove a to do item from the list
+        removeToDo(toDoElementIndex) {
+            if( toDoElementIndex >= this.toDoList.length || toDoElementIndex < 0) 
+            {
+                console.log('Invalid index');
+            }
+            else 
+            {
+                const removedElement = this.toDoList.splice(toDoElementIndex, 1);
+                this.doneList.push(removedElement[0]);
+            }
+        },
+
+        // Method to restore a to do item from the done list 
+        restoreToDo() {
+            // Check the done list, to make sure it is not empty 
+            if (this.doneList.length > 0) 
+            {
+                // Pop the last item from the done list and save it in a variable
+                const restoredElement = this.doneList.pop();
+                // Store the restored element in the todo list 
+                this.toDoList.push(restoredElement);
+            }
+        },
+
 
         // Method to check the status of a to do item in the list
+        isDone(toDoElement) {
+            return this.toDoElement.done;
+        },
+
+        // Method to update the status of a to do item in the list
+        updateStatus(toDoElement) {
+            this.done = !this.done;
+        }
     }
 
 }).mount('#app')
