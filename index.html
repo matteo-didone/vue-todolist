@@ -26,27 +26,51 @@
             <h1>Vue To Do List</h1>
         </header>
 
+        <!-- Container for the two lists -->
         <div class="list-container">
-            
+
+            <!-- Container for first list: To Do -->
             <div class="todo-list">
                 <h2>Todo List</h2>
                 <ul>
+                    <!-- We start a loop that iterates through the whole toDoList array using v-for  -->
+                    <!-- Current element: variable toDoElement -->
+                    <!-- Element Index: toDoElementIndex -->
+                    <!-- :key provides a unique identifier for each element in the loop -->
+                    <!-- When the <li> element is clicked, it triggers the @click event handler, setting the selectedToDoIndex variable to the index of the clicked element. -->
                     <li v-for="(toDoElement, toDoElementIndex) in toDoList" :key="toDoElementIndex"
                         @click="selectedToDoIndex = toDoElementIndex">
-                        <span :class="{ done: toDoElement.done }" @click="toggleDoneStatus(toDoElement)">{{
-                            toDoElement.text }}</span>
+
+                        <!-- :class is used to assign the CSS class "done" to the element based on the value of toDoElement.done -->
+                        <!-- When the <span> element is clicked, it triggers the @click event handler, that calls the toggleDoneStatus method, and passes toDoElement as a parameter of the method -->
+
+                        <span :class="{ done: toDoElement.done }" @click="toggleDoneStatus(toDoElement)">
+                            <!-- This takes the text of the toDoElement, and inserts it inside of the span -->
+                            {{ toDoElement.text }}
+                        </span>
 
                         <div class="button-container">
+                            <!-- 
+                                When the button is clicked, the removeToDo method is triggered, and it passes as arguments:
+
+                                    -Current element: variable toDoElement
+                                    -Element Index: toDoElementIndex
+                            -->
                             <button class="todo-done" @click="removeToDo(toDoElement, toDoElementIndex)">
                                 Done
                                 <i class="fa-solid fa-check"></i>
                             </button>
+
+                            <!-- 
+                                When the button is clicked, the removeFromToDoListEntirely method is triggered, and it passes as arguments:
+                                    -Element Index: toDoElementIndex
+                            -->
                             <button class="todo-delete" @click="removeFromToDoListEntirely(toDoElementIndex)">
                                 <i class="fa-solid fa-x"></i>
                             </button>
                         </div>
-
                     </li>
+
                 </ul>
             </div>
 
@@ -56,7 +80,7 @@
                     <li v-for="(doneElement, doneElementIndex) in doneList" :key="doneElementIndex"
                         @click="restoreToDo(doneElementIndex)">
                         <span class="done">{{ doneElement.text }}</span>
-            
+
                         <div class="button-container">
                             <button class="todo-undo" @click="restoreToDo(doneElementIndex)">
                                 Undo
@@ -65,7 +89,7 @@
                             <button class="todo-delete" @click="removeFromDoneListEntirely(doneElementIndex)">
                                 <i class="fa-solid fa-x"></i>
                             </button>
-            
+
                         </div>
                     </li>
                 </ul>

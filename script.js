@@ -92,6 +92,7 @@ createApp({
             done: false,
 
             // Variable to store the index of the selected todo item
+            // Initialized to null, but as soon as we click on a li, it is set to the index of the clicked element
             selectedToDoIndex: null,
 
         }
