@@ -23,55 +23,19 @@
                 <h1>Vue To Do List</h1>
             </header>
 
-            <div class="wrapper">
-
-                <div class="carousel-controls">
-
-                    <div class="carousel-control-btn-container">
-                        <button class="carousel-controls-btn" @click="getPrevious">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                    </div>
-
-                    <div class="carousel-control-btn-container">
-                        <button class="carousel-controls-btn" @click="getNext">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-                    
-                </div>
-
-                <div class="carousel-controls-play-reverse">
-                    <div class="carousel-controls">
-                        <button class="carousel-controls-btn" @click="toggleAutoPlay">
-                            <i :class="isAutoplayActive ? 'fas fa-pause' : 'fas fa-play'"></i>
-                        </button>
-                    
-                        <button class="carousel-controls-btn" @click="reverseAutoplay">
-                            <i class="fas fa-undo"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="carousel">
-                    <div class="carousel-slide">
-                        <img :src="carousel[activeIndex].image" :alt="carousel[activeIndex].title">
-                    </div>
-
-                    <div class="carousel-description">
-                        <h2>{{ carousel[activeIndex].title }}</h2>
-                        <p>{{ carousel[activeIndex].description }}</p>
-                    </div>
-
-                </div>
-
-                <div class="thumbnail-carousel">
-                    <div class="thumbnail-carousel-slide" v-for="(item, index) in carousel" :key="index" @click="goToThumbnailSlide(index)">
-                        <img :src="item.image" :alt="item.title">
-                    </div>
-                </div>
-
+            <div class="to-do-list">
+                <ul>
+                    <li v-for="todoItem in toDoList">
+                        {{ todoItem }}
+                    </li>
+                </ul>
             </div>
+
+            <div class="action-bar">
+                <input type="text" v-model="newElement" placeholder="Add item to the To Do List">
+                <button class="todo-adder" @click="addToDo(toDoElement)">Add Item</button>
+            </div>
+
         </div>  
 
         
