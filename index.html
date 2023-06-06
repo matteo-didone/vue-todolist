@@ -19,22 +19,42 @@
 
         <!-- App Container -->
         <div id="app">
-            
+
             <header>
                 <h1>Vue To Do List</h1>
             </header>
 
-            <div class="to-do-list">
-                <ul>
-                    <li v-for="toDoElement in toDoList">
-                        {{ toDoElement.text }}
-                    </li>
-                </ul>
+            <div class="list-container">
+                <div class="todo-list">
+                    <h2>Todo List</h2>
+                    <ul>
+                        <li v-for="toDoElement in toDoList">
+                            <span>{{ toDoElement.text }}</span>
+                            <button class="todo-done" @click="removeToDo(toDoElement, toDoElementIndex)">
+                                Done
+                                <i class="fa-solid fa-check"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="done-list">
+                    <h2>Done List</h2>
+                    <ul>
+                        <li v-for="(doneElement, index) in doneList">
+                            <span class="done">{{ doneElement.text }}</span>
+                            <button class="todo-undo" @click="restoreToDo(index)">
+                                Undo
+                                <i class="fa-solid fa-undo"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
             </div>
-
+    
             <div class="action-bar">
                 <input type="text" v-model="newToDoElement" placeholder="Add item to the To Do List">
-                <button class="todo-adder" @click="addToDo(toDoElement)">Add Item</button>
+                <button class="todo-adder" @click="addToDo()">Add Item</button>
             </div>
 
         </div>

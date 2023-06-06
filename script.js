@@ -134,24 +134,25 @@ createApp({
             },
 
         // Method to remove a to do item from the list
-        removeToDo(toDoElementIndex) {
-            // Check if the index is valid 
-            if( toDoElementIndex >= this.toDoList.length || toDoElementIndex < 0) 
+        removeToDo(toDoElement, toDoElementIndex) {
+            // Check if the index is valid
+            if (toDoElementIndex >= this.toDoList.length || toDoElementIndex < 0) 
             {
-                // Print an error message to the console if the index is not valid
-                console.log('Invalid index');
-            }
+                // If the index is invalid, warn
+                console.warn('Invalid index');
+            } 
             else // If the index is valid
             {
-                // We store the removed element into a variable
-                const removedElement = this.toDoList.splice(toDoElementIndex, 1);
-                // We add such variable to the list of the done items
-                this.doneList.push(removedElement[0]);
+                // It uses the splice method, which modifies the array by removing or replacing elements
+                // In this case, it removes one element (because of ", 1") at the specified index (toDoElementIndex)
+                this.toDoList.splice(toDoElementIndex, 1);
+                // After removing the item from the toDoList, it adds the same item (toDoElement) to the doneList array using the push method. This action effectively moves the item from the to-do list to the done list.
+                this.doneList.push(toDoElement);
             }
         },
 
         // Method to restore a to do item from the done list 
-        restoreToDo() {
+        restoreToDo(toDoElementIndex) {
             // Check the done list, to make sure it is not empty 
             if (this.doneList.length > 0) 
             {
@@ -161,7 +162,6 @@ createApp({
                 this.toDoList.push(restoredElement);
             }
         },
-
 
         // Method to check the status of a to do item in the list
         isDone(toDoElement) {
@@ -173,7 +173,12 @@ createApp({
         updateStatus(toDoElement) {
             // Update the status of the to do item
             this.done = !this.done;
-        }
+        },
+
+        // Method to completely remove from either list the task 
+        removeTask(toDoElement, toDoElementIndex) {
+            
+        },
     }
 
 }).mount('#app');
