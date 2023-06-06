@@ -182,7 +182,7 @@ createApp({
                 // Remove from the todo list
                 this.toDoList.splice(toDoElementIndex, 1);
             } 
-            else if (this.doneList.includes(this.toDoList[toDoElementIndex])) 
+            else if (this.doneList.includes(this.doneList[toDoElementIndex])) 
             {
                 // Remove from the done list
                 this.doneList.splice(toDoElementIndex, 1);
