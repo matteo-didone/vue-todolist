@@ -151,7 +151,7 @@ createApp({
                 // Store the restored element in the todo list 
                 this.toDoList.push(restoredElement);
             }
-        },
+        }, 
 
         // Method to check the status of a to do item in the list
         isDone(toDoElement) {
@@ -165,7 +165,7 @@ createApp({
             this.done = !this.done;
         },
 
-        removeFromToDoList(toDoElementIndex) {
+        removeFromToDoListEntirely(toDoElementIndex) {
             if (toDoElementIndex >= this.toDoList.length || toDoElementIndex < 0) {
                 console.warn('Invalid index');
                 return;
@@ -181,7 +181,7 @@ createApp({
             }
         },
 
-        removeFromDoneList(doneElementIndex) {
+        removeFromDoneListEntirely(doneElementIndex) {
             if (doneElementIndex >= this.doneList.length || doneElementIndex < 0) {
                 console.warn('Invalid index');
                 return;

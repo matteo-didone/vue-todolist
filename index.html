@@ -36,8 +36,8 @@
                                     Done
                                     <i class="fa-solid fa-check"></i>
                                 </button>
-                                <button class="todo-delete" @click="removeFromToDoList(toDoElementIndex)">
-                                    <i class="fa-solid fa-trash"></i>
+                                <button class="todo-delete" @click="removeFromToDoListEntirely(toDoElementIndex)">
+                                    <i class="fa-solid fa-x"></i>
                                 </button>
                             </div>
                             
@@ -56,8 +56,8 @@
                                     Undo
                                     <i class="fa-solid fa-undo"></i>
                                 </button>
-                                <button class="todo-delete" @click="removeFromDoneList(index)">
-                                    <i class="fa-solid fa-trash"></i>
+                                <button class="todo-delete" @click="removeFromDoneListEntirely(index)">
+                                    <i class="fa-solid fa-x"></i>
                                 </button>
                                 
                             </div>
