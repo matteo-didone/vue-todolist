@@ -1,9 +1,17 @@
-// Create a carousel with Vue.js 
-
+// Description:
+// Redo the exercise of the to-do list. This time, however, each todo will be an object, consisting of two properties:
+// text, a string that indicates the text of the todo
+// done, a boolean (true/false) that indicates whether the todo has been completed or not
+// MILESTONE 1
+// Print an item for each todo inside an HTML list. If the done property is true, display the text of the todo with a strikethrough.
+// MILESTONE 2
+// Display a "x" next to each item: by clicking on it, the todo will be removed from the list.
+// MILESTONE 3
+// Set up a text input field and an "add" button: by clicking the button, the entered text is read and used to create a new todo, which is then added to the list of existing todos.
 // Bonus:
-// 1- On clicking a thumbnail, display the corresponding image in full size.
-// 2- Apply autoplay to the slider: change the image automatically every 3 seconds.
-// 3- When the mouse hovers over the slider, pause the autoplay and resume it when the mouse exits.
+// 1- In addition to clicking the button, also intercept the ENTER key to add the todo to the list.
+// 2- By clicking on the text of the item, reverse the value of the done property of the corresponding todo (if done was false, set it to true, and vice versa).
+
 
 (() => {
 const { createApp } = Vue;
@@ -13,182 +21,110 @@ createApp({
     // Status of the app (data) 
     data() {
         return {
-            // Array of objects with the elements of the carousel 
+            // Array of objects with the elements of the to do List 
             // Start creating an array of literal objects
-            // Each object will have an image, title and description
-            carousel:
+            // Each object will have text and done properties
+            toDoList:
             [
                 {
-                    image: 'img/01.webp',
-                    title: 'Marvel\'s Spiderman Miles Morale',
-                    description: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
-                    index: 0
-                }, 
+                    text: 'Go for a morning jog',
+                    done: false
+                },
                 {
-                    image: 'img/02.webp',
-                    title: 'Ratchet & Clank: Rift Apart',
-                    description: 'Go dimension-hopping with Ratchet and Clank as they take on an evil emperor from another reality.',
-                    index: 1
-                }, 
+                    text: 'Prepare breakfast',
+                    done: false
+                },
                 {
-                    image: 'img/03.webp',
-                    title: 'Fortnite',
-                    description: "Grab all of your friends and drop into Epic Games Fortnite, a massive 100 - player face - off that combines looting, crafting, shootouts and chaos.",
-                    index: 2
-                }, 
+                    text: 'Read a chapter from a book',
+                    done: false
+                },
                 {
-                    image: 'img/04.webp',
-                    title: 'Stray',
-                    description: 'Lost, injured and alone, a stray cat must untangle an ancient mystery to escape a long-forgotten city',
-                    index: 3
-                }, 
+                    text: 'Complete the coding project milestone',
+                    done: false
+                },
                 {
-                    image: 'img/05.webp',
-                    title: "Marvel's Avengers",
-                    description: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
-                    index: 4
+                    text: 'Have a healthy lunch',
+                    done: false
+                },
+                {
+                    text: 'Attend a team meeting',
+                    done: false
+                },
+                {
+                    text: 'Reply to important emails',
+                    done: false
+                },
+                {
+                    text: 'Take a short break and stretch',
+                    done: false
+                },
+                {
+                    text: 'Research new coding techniques',
+                    done: false
+                },
+                {
+                    text: 'Write a blog post about your project',
+                    done: false
+                },
+                {
+                    text: 'Review and debug code',
+                    done: false
+                },
+                {
+                    text: 'Plan tasks for tomorrow',
+                    done: false
+                },
+                {
+                    text: 'Cook dinner',
+                    done: false
+                },
+                {
+                    text: 'Watch a tutorial on a new programming language',
+                    done: false
+                },
+                {
+                    text: 'Relax and unwind with a favorite hobby',
+                    done: false
+                },
+                {
+                    text: 'Don\'t forget to brush your teeth before bed',
+                    done: false
+                },
+                {
+                    text: 'Start a new life in Argentina',
+                    done: false
                 }
             ], 
 
-            // Index of the current element of the carousel
-            activeIndex: 0,
+            // Prepare an array that's going to store the to do items that will be done: true
+            doneList : [],
 
-            // Status of the autoplay of the carousel
-            isAutoplayActive: false,
-            isAutoplayReversed: false,
-            autoplayInterval: null
+            // Variable to store the text of the new to do item
+            newToDoText: '', 
+            // Variable to store the status of the new item
+            done: false 
+
         }  
     },
 
     // Method called when the component is mounted
-    mounted() {
-        const carouselElement = document.querySelector('#app');
+    // mounted() {
 
-        // Start the autoplay when the component is mounted
-        this.startAutoplay();
-
-        // Pause autoplay on mouseenter
-        carouselElement.addEventListener('mouseenter', this.pauseAutoplay);  
-        // Resume autoplay on mouseleave
-        carouselElement.addEventListener('mouseleave', this.resumeAutoplay);
-    },
+    // },
 
     // Method called before the Vue component is unmounted
-    beforeUnmount() {
-        const carouselElement = document.querySelector('.carousel-container');
-    
-        // Remove event listeners to prevent memory leaks
-        carouselElement.removeEventListener('mouseenter', this.pauseAutoplay);
-        carouselElement.removeEventListener('mouseleave', this.resumeAutoplay);
-    },
+    // beforeUnmount() {
+
+    // },
 
     // Methods of the app
     methods: {
 
-        // Method to change the current element of the carousel to the previous one
-        getPrevious() {
-            // I need to take into account the edge case, what to do if I'm at the first element, and I want to go to the previous one, which will be the last element of the array
+        // Method to add a new to do item to the list
 
-            // Check if the active index is at the first element
-            if (this.activeIndex === 0) {
-                // If so, set the active index to the last element of the carousel
-                this.activeIndex = this.carousel.length - 1;
-            }
-            else {
-                // If not at the first element, decrement the active index by 1
-                this.activeIndex--;
-            }
-        },
+        // Method to remove a to do item from the list
 
-        // Method to change the current element of the carousel
-        getNext() {
-            // I need to take into account the edge case, what to do if I'm at the last element, and I want to go to the next one, which will be the first element of the array
-
-            // Check if the active index is at the last element
-            if (this.activeIndex === this.carousel.length - 1) {
-                // If so, set the active index to the first element of the carousel
-                this.activeIndex = 0;
-            }
-            else {
-                // If not at the last element, increment the active index by 1
-                this.activeIndex++;
-            }
-        },
-
-        // Method to check if item is active
-        isActive(index) {
-            return index === this.activeIndex;
-        },
-
-        // Method to change the current element of the carousel to the one clicked on the thumbnails
-        goToThumbnailSlide(newIndex) {
-            // Set the active index to the index of the thumbnail clicked
-            this.activeIndex = newIndex;
-        },
-
-        // Method to change the current element of the carousel automatically
-        toggleAutoPlay() {
-            // The variable this.isAutoplayActive will toggle its value between true and false each time the line of code is executed. This allows to switch the activation of the autoplay by simply clicking the pause/resume play button.
-            this.isAutoplayActive = !this.isAutoplayActive;
-
-            // If the autoplay is not active, start the autoplay
-            if (this.isAutoplayActive) 
-            {
-                this.startAutoplay();
-            } 
-            else // If the autoplay is active, stop the autoplay
-            {
-                this.stopAutoplay();
-            }
-        },
-
-        // Method to change the current element order of the carousel automatically
-        reverseAutoplay() {
-            // The variable this.isAutoplayReversed will toggle its value between true and false each time the line of code is executed. This allows to switch the direction of the autoplay by simply clicking the reverse autoplay button.
-            this.isAutoplayReversed = !this.isAutoplayReversed;
-            // Reverse the order of the carousel
-            this.carousel.reverse();
-        
-            // If the autoplay is not active, start the autoplay
-            if (this.isAutoplayActive) 
-            {
-                this.startAutoplay();
-            }
-        },
-
-        // Method to start the autoplay
-        startAutoplay() {
-            // Clear the interval to prevent multiple intervals running at the same time
-            this.stopAutoplay();
-
-            // Set the interval to change the current element of the carousel automatically
-            this.autoplayInterval = setInterval(() => {
-                // If the autoplay is reversed, get the previous element of the carousel
-                // If not, get the next element of the carousel
-                this.isAutoplayReversed ? this.getPrevious() : this.getNext();
-            }, 3000);
-        },
-        
-        // Method to stop the autoplay
-        stopAutoplay() {
-            // Clear the interval to prevent multiple intervals running at the same time
-            clearInterval(this.autoplayInterval);
-        },
-
-        // Method to pause the autoplay
-        pauseAutoplay() {
-            // If the autoplay is active, stop the autoplay
-            this.stopAutoplay();
-        },
-
-        // Method to resume the autoplay
-        resumeAutoplay() {
-            // If the autoplay is active, start the autoplay
-            if (this.isAutoplayActive) 
-            {
-                this.startAutoplay();
-            }
-        },
+        // Method to check the status of a to do item in the list
     }
 
 }).mount('#app')
