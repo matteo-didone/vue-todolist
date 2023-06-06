@@ -1,13 +1,6 @@
-// Description:
-// Redo the exercise of the to-do list. This time, however, each todo will be an object, consisting of two properties:
-// text, a string that indicates the text of the todo
-// done, a boolean (true/false) that indicates whether the todo has been completed or not
-// MILESTONE 1
-// Print an item for each todo inside an HTML list. If the done property is true, display the text of the todo with a strikethrough.
 // MILESTONE 2
 // Display a "x" next to each item: by clicking on it, the todo will be removed from the list.
-// MILESTONE 3
-// Set up a text input field and an "add" button: by clicking the button, the entered text is read and used to create a new todo, which is then added to the list of existing todos.
+
 // Bonus:
 // 1- In addition to clicking the button, also intercept the ENTER key to add the todo to the list.
 // 2- By clicking on the text of the item, reverse the value of the done property of the corresponding todo (if done was false, set it to true, and vice versa).
@@ -176,9 +169,25 @@ createApp({
         },
 
         // Method to completely remove from either list the task 
-        removeTask(toDoElement, toDoElementIndex) {
-            
-        },
+        removeTask(toDoElementIndex) {
+
+            // Check if the index is valid just like we did before with the removeToDo method
+            if (toDoElementIndex >= this.toDoList.length || toDoElementIndex < 0) {
+                console.warn('Invalid index');
+            }
+        
+            // Remove the todo item from the appropriate list by checking if it is in the to do list or not
+            if (this.toDoList.includes(this.toDoList[toDoElementIndex])) 
+            {
+                // Remove from the todo list
+                this.toDoList.splice(toDoElementIndex, 1);
+            } 
+            else if (this.doneList.includes(this.toDoList[toDoElementIndex])) 
+            {
+                // Remove from the done list
+                this.doneList.splice(toDoElementIndex, 1);
+            }
+        }
     }
 
 }).mount('#app');

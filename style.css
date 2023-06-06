@@ -27,13 +27,15 @@ header h1
     margin-top: 2rem;
 }
 
-.todo-list, .done-list 
+.todo-list,
+.done-list 
 {
     flex: 1;
     text-align: center;
 }
 
-.todo-list h2, .done-list h2 
+.todo-list h2,
+.done-list h2 
 {
     margin-bottom: 1rem;
 }
@@ -69,6 +71,12 @@ button
     color: #555;
 }
 
+.button-container 
+{
+    display: flex;
+    align-items: flex-end;
+}
+
 button.todo-done 
 {
     color: #28a745;
@@ -77,6 +85,12 @@ button.todo-done
 button.todo-undo 
 {
     color: #dc3545;
+}
+
+button.todo-delete 
+{
+    color: #555;
+    margin-left: 0.5rem;
 }
 
 .action-bar 
@@ -105,7 +119,7 @@ button.todo-adder
     cursor: pointer;
 }
 
-button.todo-adder:hover 
+button.todo-adder:hover
 {
     background-color: #0056b3;
 }

@@ -28,12 +28,19 @@
                 <div class="todo-list">
                     <h2>Todo List</h2>
                     <ul>
-                        <li v-for="toDoElement in toDoList">
+                        <li v-for="(toDoElement, toDoElementIndex) in toDoList">
                             <span>{{ toDoElement.text }}</span>
-                            <button class="todo-done" @click="removeToDo(toDoElement, toDoElementIndex)">
-                                Done
-                                <i class="fa-solid fa-check"></i>
-                            </button>
+
+                            <div class="button-container">
+                                <button class="todo-done" @click="removeToDo(toDoElement, toDoElementIndex)">
+                                    Done
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+                                <button class="todo-delete" @click="removeTask(toDoElementIndex)">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                            
                         </li>
                     </ul>
                 </div>
@@ -43,10 +50,16 @@
                     <ul>
                         <li v-for="(doneElement, index) in doneList">
                             <span class="done">{{ doneElement.text }}</span>
-                            <button class="todo-undo" @click="restoreToDo(index)">
-                                Undo
-                                <i class="fa-solid fa-undo"></i>
-                            </button>
+
+                            <div class="button-container">
+                                <button class="todo-undo" @click="restoreToDo(index)">
+                                    Undo
+                                    <i class="fa-solid fa-undo"></i>
+                                </button>
+                                <button class="todo-delete" @click="removeTask(toDoElementIndex)">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
                         </li>
                     </ul>
                 </div>
