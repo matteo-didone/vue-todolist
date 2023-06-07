@@ -44,7 +44,7 @@
                         <!-- :class is used to assign the CSS class "done" to the element based on the value of toDoElement.done -->
                         <!-- When the <span> element is clicked, it triggers the @click event handler, that calls the toggleDoneStatus method, and passes toDoElement as a parameter of the method -->
 
-                        <span :class="{ done: toDoElement.done }" @click="toggleDoneStatus(toDoElement)">
+                        <span :class="{ done: toDoElement.done }" @click.stop="toggleDoneStatus(toDoElement)">
                             <!-- This takes the text of the toDoElement, and inserts it inside of the span -->
                             {{ toDoElement.text }}
                         </span>
